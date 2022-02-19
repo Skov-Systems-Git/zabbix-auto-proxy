@@ -3,7 +3,7 @@
 ## dotsource the config
 . config.sh
 ## print env vars received
-echo "########## VARS START #########"
+echo "#################### VARS #####################"
 echo "Zabbix frontend: $ZABBIX_FRONTEND"
 echo "Zabbix API key: $ZABBIX_API_KEY"
 echo "Zabbix server: $ZABBIX_SERVER"
@@ -11,7 +11,7 @@ echo "Zabbix proxy firewall config: $ZABBIX_FIREWALL_CONF"
 echo "Zabbix proxy port: $ZABBIX_PROXY_PORT"
 echo "Zabbix proxy PSK identity: $PROXY_PSK_IDENT"
 echo "Zabbix proxy PSK: $PROXY_PSK"
-echo "########## VARS END ##########"
+echo "#################### VARS #####################"
 echo ""
 
 echo "$(date +%FT%T.%3N%Z): Starting!"
@@ -45,10 +45,10 @@ sudo mv /tmp/.proxy-temp.conf /etc/zabbix/zabbix_proxy.conf
 sudo cp templates/zabbix_agent2.conf /etc/zabbix/
 echo $PROXY_PSK > /tmp/zabbix_proxy.psk
 sudo mv /tmp/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
-sudo chmod 400 /etc/zabbix/zabbix_proxy.psk
 
-## make sure ownership is correct
+## make permissions are correct
 cd /etc/zabbix
+sudo chmod 400 /etc/zabbix/zabbix_proxy.psk
 sudo chown -R zabbix:zabbix $(ls -I web)
 
 ## enable services 
