@@ -29,7 +29,7 @@
 # Default:
 # Server=
 
-Server=127.0.0.1
+Server={{ vars_dict['server'] }}
 
 ### Option: Hostname
 #       Unique, case sensitive Proxy name. Make sure the Proxy name is known to the server!
@@ -54,6 +54,8 @@ Server=127.0.0.1
 # Range: 1024-32767
 # Default:
 # ListenPort=10051
+
+ListenPort={{ vars_dict['port'] }}
 
 ### Option: SourceIP
 #       Source IP address for outgoing connections.
@@ -166,7 +168,7 @@ SocketDir=/var/run/zabbix
 # Default:
 # DBName=
 
-DBName=zabbix_proxy
+DBName=/var/run/zabbix/proxy.db
 
 ### Option: DBSchema
 #       Schema name. Used for PostgreSQL.
@@ -236,7 +238,7 @@ DBUser=zabbix
 # Default:
 # ProxyOfflineBuffer=1
 
-ProxyOfflineBuffer={{ proxy_offline_buffer_hours }}
+ProxyOfflineBuffer={{ vars_dict['offline'] }}
 
 ### Option: HeartbeatFrequency
 #       Frequency of heartbeat messages in seconds.
@@ -257,7 +259,7 @@ ProxyOfflineBuffer={{ proxy_offline_buffer_hours }}
 # Range: 1-3600*24*7
 # Default:
 # ConfigFrequency=3600
-ConfigFrequency={{ proxy_config_sync_seconds }}
+ConfigFrequency={{ vars_dict['config_freq'] }}
 
 ### Option: DataSenderFrequency
 #       Proxy will send collected data to the Server every N seconds.
@@ -278,7 +280,7 @@ ConfigFrequency={{ proxy_config_sync_seconds }}
 # Default:
 # StartPollers=5
 
-StartPollers={{ proxy_pollers }}
+StartPollers={{ vars_dict['pollers'] }}
 
 ### Option: StartIPMIPollers
 #       Number of pre-forked instances of IPMI pollers.
@@ -308,7 +310,7 @@ StartPollers={{ proxy_pollers }}
 # Default:
 # StartPollersUnreachable=1
 
-StartPollersUnreachable={{ proxy_pollers_unreachable }}
+StartPollersUnreachable={{ vars_dict['pollers_unreach'] }}
 
 ### Option: StartHistoryPollers
 #       Number of pre-forked instances of history pollers.
@@ -345,7 +347,7 @@ StartPollersUnreachable={{ proxy_pollers_unreachable }}
 # Default:
 # StartDiscoverers=1
 
-StartDiscoverers={{ proxy_discoverers }}
+StartDiscoverers={{ vars_dict['discoverers'] }}
 
 ### Option: StartHTTPPollers
 #       Number of pre-forked instances of HTTP pollers.
@@ -387,7 +389,7 @@ StartDiscoverers={{ proxy_discoverers }}
 # Default:
 # StartVMwareCollectors=0
 
-StartVMwareCollectors={{ vmware_collectors }}
+StartVMwareCollectors={{ vars_dict['vmware_collectors']  }}
 
 ### Option: VMwareFrequency
 #       How often Zabbix will connect to VMware service to obtain a new data.
@@ -397,7 +399,7 @@ StartVMwareCollectors={{ vmware_collectors }}
 # Default:
 # VMwareFrequency=60
 
-VMwareFrequency={{ vmware_frequency }}
+VMwareFrequency={{ vars_dict['vmware_freq'] }}
 
 ### Option: VMwarePerfFrequency
 #       How often Zabbix will connect to VMware service to obtain performance data.
@@ -417,7 +419,7 @@ VMwareFrequency={{ vmware_frequency }}
 # Default:
 # VMwareCacheSize=8M
 
-VMwareCacheSize={{ vmware_cache_size_mb }}M
+VMwareCacheSize={{ vars_dict['vmware_cache_mb'] }}M
 
 ### Option: VMwareTimeout
 #       Specifies how many seconds vmware collector waits for response from VMware service.
@@ -477,7 +479,7 @@ SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
 # Default:
 # CacheSize=8M
 
-CacheSize={{ proxy_cache_size_mb }}M
+CacheSize={{ vars_dict['proxy_cache_mb'] }}M
 
 ### Option: StartDBSyncers
 #       Number of pre-forked instances of DB Syncers.
@@ -487,7 +489,7 @@ CacheSize={{ proxy_cache_size_mb }}M
 # Default:
 # StartDBSyncers=4
 
-StartDBSyncers={{ proxy_db_syncers }}
+StartDBSyncers={{ vars_dict['proxy_dbsyncers'] }}
 
 ### Option: HistoryCacheSize
 #       Size of history cache, in bytes.
@@ -498,7 +500,7 @@ StartDBSyncers={{ proxy_db_syncers }}
 # Default:
 # HistoryCacheSize=16M
 
-HistoryCacheSize={{ proxy_history_cache_mb }}M
+HistoryCacheSize={{ vars_dict['proxy_history_cache_mb'] }}M
 
 ### Option: HistoryIndexCacheSize
 #       Size of history index cache, in bytes.
@@ -509,7 +511,7 @@ HistoryCacheSize={{ proxy_history_cache_mb }}M
 # Default:
 # HistoryIndexCacheSize=4M
 
-HistoryIndexCacheSize={{ proxy_history_index_cache_mb }}M
+HistoryIndexCacheSize={{vars_dict['proxy_history_index_cache_mb'] }}M
 
 ### Option: Timeout
 #       Specifies how long we wait for agent, SNMP device or external check (in seconds).
@@ -788,7 +790,7 @@ TLSConnect=psk
 # Default:
 # TLSPSKIdentity=
 
-TLSPSKIdentity={{ proxy_psk_identity }}
+TLSPSKIdentity={{ vars_dict['psk_ident'] }}
 
 ### Option: TLSPSKFile
 #       Full pathname of a file containing the pre-shared key.
