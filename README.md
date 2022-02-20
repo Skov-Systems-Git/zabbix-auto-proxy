@@ -2,7 +2,7 @@
 
 - [zabbix-auto-proxy](#zabbix-auto-proxy)
   - [Obtain your API key](#obtain-your-api-key)
-  - [Deploy the prox](#deploy-the-prox)
+  - [Deploy the proxy](#deploy-the-proxy)
   - [Example output](#example-output)
   - [Sources](#sources)
 
@@ -14,7 +14,7 @@
 2. "Create API token"
 3. Limit as required
 
-## Deploy the prox
+## Deploy the proxy
 
 **The user used for thees steps needs full sudo permissions**
 
@@ -32,12 +32,11 @@ cp templates/_template_config.sh config.sh
 [usr@PROXY t]$ ./setup.sh 
 #################### VARS #####################
 Zabbix frontend: https://zabbix-frontend.domain.tld
-Zabbix API key: <redacted>
 Zabbix server: zabbix-lb.domain.tld
 Zabbix proxy firewall config: true
 Zabbix proxy port: 10051
 Zabbix proxy PSK identity: PSK-PROXY
-Zabbix proxy PSK: <redacted>
+Zabbix proxy PSK: ddd98ac9c8b53cdebeb224b57a0ad474b39e2a6ce04a9f8c39abc969467c1bdb
 #################### VARS #####################
 
 2022-02-20T01:35:32.796CET: Starting!
