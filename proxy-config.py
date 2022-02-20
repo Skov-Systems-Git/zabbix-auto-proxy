@@ -27,9 +27,9 @@ def main():
     proxy_db_syncers: int = os.environ.get("PROXY_DB_SYNCERS")
     proxy_hist_cache_mb: int = os.environ.get("PROXY_HISTORY_CACHE_MB")
     proxy_hist_index_cache_mb: int = os.environ.get("PROXY_HISTORY_INDEX_CACHE_MB")
-    proxy_psk_ident: str = os.environ.get("PROXY_HISTORY_INDEX_CACHE_MB") 
+    proxy_psk_ident: str = os.environ.get("PROXY_HISTORY_INDEX_CACHE_MB")
     proxy_psk: str = os.environ.get("PROXY_PSK")
-    
+
     # create a dict of the loaded env vars, to simplify loading into jinja
     vars_dict = {
         "frontend": zabbix_frontend_url,
@@ -51,16 +51,16 @@ def main():
         "proxy_history_index_cache_mb": proxy_hist_index_cache_mb,
         "psk_ident": proxy_psk_ident,
         "proxy_psk": proxy_psk
-        } 
+        }
 
     # load the proxy jinja template from templates/
     file_loader = FileSystemLoader("templates")
     env = Environment(loader=file_loader)
     template_input = env.get_template("zabbix_proxy.conf.jinja")
-    
+
     # render the config, using vars_dict as the only input
     rendered_config = template_input.render(vars_dict=vars_dict)
-    
+
     # write the rendered config to a tempoary location (to be used outside python)
     with open("/tmp/.proxy-temp.conf", "a") as f:
         f.write(rendered_config)
@@ -69,7 +69,7 @@ def main():
     # log into the api using the provided API key
     zapi = ZabbixAPI(vars_dict["frontend"])
     zapi.login(api_token=vars_dict["key"])
-    
+
     # create the proxy in zabbix via API
     res_create = zapi.proxy.create(
         host=vars_dict["name"],
