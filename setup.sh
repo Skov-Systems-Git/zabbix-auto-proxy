@@ -57,5 +57,9 @@ sudo chown -R zabbix:zabbix $(ls -I web)
 echo "$(date +%FT%T.%3N%Z): Enabling Zabbix proxy and agent services"
 sudo systemctl enable --now zabbix-proxy zabbix-agent2 > /dev/null 2>&1
 
+## check Zabbix services status
+echo "$(date +%FT%T.%3N%Z): Zabbix proxy service is $(systemctl is-active zabbix-proxy)"
+echo "$(date +%FT%T.%3N%Z): Zabbix agent2 service is $(systemctl is-active zabbix-agent2)"
+
 ## Done!
 echo "$(date +%FT%T.%3N%Z): Done!"

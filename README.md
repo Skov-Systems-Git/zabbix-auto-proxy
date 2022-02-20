@@ -30,24 +30,27 @@ cp templates/_template_config.sh config.sh
 
 ```
 [usr@PROXY t]$ ./setup.sh 
+
 #################### VARS #####################
-Zabbix frontend: https://zabbix-frontend.domain.tld
-Zabbix server: zabbix-lb.domain.tld
+Zabbix frontend: https://zabbix-frontend-lb.dom.tld
+Zabbix server: zabbix-ha-lb.dom.tld
 Zabbix proxy firewall config: true
 Zabbix proxy port: 10051
 Zabbix proxy PSK identity: PSK-PROXY
-Zabbix proxy PSK: ddd98ac9c8b53cdebeb224b57a0ad474b39e2a6ce04a9f8c39abc969467c1bdb
+Zabbix proxy PSK: 7459c637b19847a4724802f41117937d975c75dfe1a4572bf37ca682e6348e43
 #################### VARS #####################
 
-2022-02-20T01:35:32.796CET: Starting!
-2022-02-20T01:35:32.798CET: Adding 10051/tcp to firewalld default zone
-2022-02-20T01:35:33.818CET: Installing initial dependencies via dnf
-2022-02-20T01:35:37.043CET: Cleaning DNF cache
-2022-02-20T01:35:37.221CET: Installing deploy dependencies via dnf
-2022-02-20T01:36:47.306CET: Generating proxy config, and creating proxy via API
-2022-02-20T01:36:47.765CET: Placing generated configs and updating file permissions
-2022-02-20T01:36:47.857CET: Enabling Zabbix proxy and agent services
-2022-02-20T01:36:48.053CET: Done!
+2022-02-20T03:31:22.134CET: Starting!
+2022-02-20T03:31:22.135CET: Adding 10051/tcp to firewalld default zone
+2022-02-20T03:31:23.155CET: Installing initial dependencies via dnf
+2022-02-20T03:31:26.480CET: Cleaning DNF cache
+2022-02-20T03:31:26.659CET: Installing deploy dependencies via dnf
+2022-02-20T03:32:11.109CET: Generating proxy config, and creating proxy via API
+2022-02-20T03:32:11.577CET: Placing generated configs and updating file permissions
+2022-02-20T03:32:11.670CET: Enabling Zabbix proxy and agent services
+2022-02-20T03:32:11.839CET: Zabbix proxy service is active
+2022-02-20T03:32:11.848CET: Zabbix agent2 service is active
+2022-02-20T03:32:11.855CET: Deploy done!
 ```
 
 ## Sources
