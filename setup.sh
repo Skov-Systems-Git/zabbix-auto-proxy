@@ -61,5 +61,5 @@ sudo systemctl enable --now zabbix-proxy zabbix-agent2 > /dev/null 2>&1
 echo "$(date +%FT%T.%3N%Z): Zabbix proxy service is $(systemctl is-active zabbix-proxy)"
 echo "$(date +%FT%T.%3N%Z): Zabbix agent2 service is $(systemctl is-active zabbix-agent2)"
 
-## deploy done!
-echo "$(date +%FT%T.%3N%Z): Deploy done!"
+## Done!
+echo "$(date +%FT%T.%3N%Z): Done!"
