@@ -6,8 +6,8 @@ from jinja2 import Environment, FileSystemLoader
 
 def main():
     """
-    * This script uses jinja templating to generate Zabbix configs, and set them in place, including Zabbix Proxy PSK config.
-    * The script then creates the proxy object on the defined server, with the generated PSK settings.
+    * This script uses jinja templating to generate a Zabbix proxy config from env vars.
+    * The script then creates the proxy object on the defined Zabbix frontend with generated PSK settings.
     """
     # Load env vars from config.sh to variables in python
     zabbix_frontend_url: str = os.environ.get("ZABBIX_FRONTEND")
@@ -30,7 +30,7 @@ def main():
     proxy_psk_ident: str = os.environ.get("PROXY_HISTORY_INDEX_CACHE_MB") 
     proxy_psk: str = os.environ.get("PROXY_PSK")
     
-    # create a dict of the vars, to simplify loading into jinja
+    # create a dict of the loaded env vars, to simplify loading into jinja
     vars_dict = {
         "frontend": zabbix_frontend_url,
         "key": zabbix_api_key,
@@ -53,10 +53,12 @@ def main():
         "proxy_psk": proxy_psk
         } 
 
-    # load the proxy template from templates/
+    # load the proxy jinja template from templates/
     file_loader = FileSystemLoader("templates")
     env = Environment(loader=file_loader)
     template_input = env.get_template("zabbix_proxy.conf.jinja")
+    
+    # render the config, using vars_dict as the only input
     rendered_config = template_input.render(vars_dict=vars_dict)
     
     # write the rendered config to a tempoary location (to be used outside python)
