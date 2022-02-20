@@ -17,7 +17,7 @@ echo ""
 ## starting deploy
 echo "$(date +%FT%T.%3N%Z): Starting!"
 
-## add the firewall rule
+## add the firewall rule if chosen
 if [ "$ZABBIX_FIREWALL_CONF" = true ] ; then
     echo "$(date +%FT%T.%3N%Z): Adding $ZABBIX_PROXY_PORT/tcp to firewalld default zone"
     sudo firewall-cmd --add-port=$ZABBIX_PROXY_PORT/tcp --permanent -q > /dev/null 2>&1
