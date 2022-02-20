@@ -3,6 +3,7 @@
 ## dotsource the config
 . config.sh
 ## print env vars received
+echo ""
 echo "#################### VARS #####################"
 echo "Zabbix frontend: $ZABBIX_FRONTEND"
 echo "Zabbix server: $ZABBIX_SERVER"
@@ -13,7 +14,9 @@ echo "Zabbix proxy PSK: $PROXY_PSK"
 echo "#################### VARS #####################"
 echo ""
 
+## starting deploy
 echo "$(date +%FT%T.%3N%Z): Starting!"
+
 ## add the firewall rule
 if [ "$ZABBIX_FIREWALL_CONF" = true ] ; then
     echo "$(date +%FT%T.%3N%Z): Adding $ZABBIX_PROXY_PORT/tcp to firewalld default zone"
@@ -38,16 +41,16 @@ pip3 install --user -r requirements.txt > /dev/null 2>&1
 echo "$(date +%FT%T.%3N%Z): Generating proxy config, and creating proxy via API"
 ./proxy-config.py
 
-## copy configs in place
+## place configs
 echo "$(date +%FT%T.%3N%Z): Placing generated configs and updating file permissions"
 sudo mv /tmp/.proxy-temp.conf /etc/zabbix/zabbix_proxy.conf
 sudo cp templates/zabbix_agent2.conf /etc/zabbix/
 echo $PROXY_PSK > /tmp/zabbix_proxy.psk
 sudo mv /tmp/zabbix_proxy.psk /etc/zabbix/zabbix_proxy.psk
 
-## make permissions are correct
+## make sure permissions are correct
 cd /etc/zabbix
-sudo chmod 400 /etc/zabbix/zabbix_proxy.psk
+sudo chmod 400 zabbix_proxy.psk
 sudo chown -R zabbix:zabbix $(ls -I web)
 
 ## enable services 
