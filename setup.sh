@@ -5,7 +5,6 @@
 ## print env vars received
 echo "#################### VARS #####################"
 echo "Zabbix frontend: $ZABBIX_FRONTEND"
-echo "Zabbix API key: $ZABBIX_API_KEY"
 echo "Zabbix server: $ZABBIX_SERVER"
 echo "Zabbix proxy firewall config: $ZABBIX_FIREWALL_CONF"
 echo "Zabbix proxy port: $ZABBIX_PROXY_PORT"
